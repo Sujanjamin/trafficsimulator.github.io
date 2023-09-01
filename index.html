@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Light Simulator</title>
+    <style>
+        .traffic-light{
+            width:100px;
+            height:300px;
+            border:1px solid black;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:space-between;
+            margin-top:25px;
+            margin-left:625px;
+            margin-right: 500px;
+            background-color: black;
+        }
+        .light{
+            width:80px;
+            height:80px;
+            border-radius: 50%;
+            margin:10px;
+        }
+        .red{
+            background-color: red;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .green{
+            background-color: green;
+        }
+        .h1{
+            font-family:'Times New Roman', Times, serif;
+            font-size: 50px;
+            text-align: center;
+
+            animation: animate 1.5s linear infinite;
+        }
+  
+        @keyframes animate {
+            0% {
+                opacity: 0;
+                color:red;
+            }
+  
+            50% {
+                opacity: 0.7;
+                color: yellow;
+            }
+  
+            100% {
+                opacity: 0;
+                color:green;
+            }
+        }
+    
+        .bgimage{
+            background-image: url(https://img.freepik.com/premium-vector/straight-road-with-railings-through-meadow-trees-landscape-nature-highway-background_338371-621.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+           
+        }
+
+    </style>
+</head>
+<body class="bgimage">
+    <h1 class="h1">TRAFFIC LIGHT</h1>
+    <div class="traffic-light">
+        <div class="light red"></div>
+        <div class="light yellow"></div>
+        <div class="light green"></div>
+    </div>
+    <script>
+        const redLight=document.querySelector('.red');
+        const yellowLight=document.querySelector('.yellow');
+        const greenLight=document.querySelector('.green');
+
+        function changeLights(){
+            setTimeout(()=>{
+                redLight.style.backgroundColor='red';
+                yellowLight.style.backgroundColor='transparent';
+                greenLight.style.backgroundColor='transparent';
+
+                setTimeout(()=>{
+                redLight.style.backgroundColor='transparent';
+                yellowLight.style.backgroundColor='yellow';
+                greenLight.style.backgroundColor='transparent';
+
+                setTimeout(()=>{
+                redLight.style.backgroundColor='transparent';
+                yellowLight.style.backgroundColor='transparent';
+                greenLight.style.backgroundColor='green';
+
+                changeLights();// Recursively call to keep the cycle going
+                },2000);// Green light  for 2 seconds
+            },1000);// Yellow light for 1 second
+        },2000);// Red light for 2 seconds
+    }
+    changeLights(); // Start the cycle
+    </script>
+    
+</body>
+</html>
